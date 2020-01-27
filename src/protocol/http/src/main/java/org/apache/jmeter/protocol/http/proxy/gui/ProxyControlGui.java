@@ -394,8 +394,6 @@ public class ProxyControlGui extends LogicControllerGui implements JMeterGUIComp
         int position = model.getTargetController();
         TreeNodeWrapper choice = (TreeNodeWrapper) targetNodesModel.getElementAt(position);
         targetNodesModel.setSelectedItem(choice);
-
-
         populateTable(includeModel, model.getIncludePatterns().iterator());
         populateTable(excludeModel, model.getExcludePatterns().iterator());
         repaint();
