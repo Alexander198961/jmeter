@@ -322,6 +322,7 @@ public class ProxyControlGui extends LogicControllerGui implements JMeterGUIComp
             model.setRegexMatch(regexMatch.isSelected());
             model.setContentTypeInclude(contentTypeInclude.getText());
             model.setContentTypeExclude(contentTypeExclude.getText());
+            model.setTargetController(targetNodes.getSelectedIndex());
             TreeNodeWrapper nw = (TreeNodeWrapper) targetNodes.getSelectedItem();
             if (nw == null) {
                 model.setTarget(null);
@@ -389,6 +390,11 @@ public class ProxyControlGui extends LogicControllerGui implements JMeterGUIComp
 
         reinitializeTargetCombo();// Set up list of potential targets and
                                     // enable listener
+
+        int position = model.getTargetController();
+        TreeNodeWrapper choice = (TreeNodeWrapper) targetNodesModel.getElementAt(position);
+        targetNodesModel.setSelectedItem(choice);
+
 
         populateTable(includeModel, model.getIncludePatterns().iterator());
         populateTable(excludeModel, model.getExcludePatterns().iterator());
@@ -462,6 +468,10 @@ public class ProxyControlGui extends LogicControllerGui implements JMeterGUIComp
             deleteRowFromTable(includeModel, includeTable);
         } else if (command.equals(CHANGE_TARGET)) {
             log.debug("Change target {} in model {}", targetNodes.getSelectedItem(), model);
+            if(targetNodes.getSelectedItem() == null)
+            {
+                targetNodes.setSelectedIndex(0);
+            }
             TreeNodeWrapper nw = (TreeNodeWrapper) targetNodes.getSelectedItem();
             model.setTarget(nw.getTreeNode());
             enableRestart();
