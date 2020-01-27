@@ -141,7 +141,7 @@ public class ProxyControl extends GenericController implements NonTestElement {
     private static final String REGEX_MATCH = "ProxyControlGui.regex_match"; // $NON-NLS-1$
     private static final String CONTENT_TYPE_EXCLUDE = "ProxyControlGui.content_type_exclude"; // $NON-NLS-1$
     private static final String CONTENT_TYPE_INCLUDE = "ProxyControlGui.content_type_include"; // $NON-NLS-1$
-    private static final int TARGET_CONTROLLER = 0;
+    private static final String TARGET_CONTROLLER = "ProxyControlGui.target_controller";
     private static final String NOTIFY_CHILD_SAMPLER_LISTENERS_FILTERED = "ProxyControlGui.notify_child_sl_filtered"; // $NON-NLS-1$
 
     private static final String BEARER_AUTH = "Bearer"; // $NON-NLS-1$
@@ -393,11 +393,13 @@ public class ProxyControl extends GenericController implements NonTestElement {
     public void setContentTypeExclude(String contentTypeExclude) {
         setProperty(new StringProperty(CONTENT_TYPE_EXCLUDE, contentTypeExclude));
     }
+
     public void setTargetController(int targetController) {
-        this.setProperty(new IntegerProperty("target_controller", targetController));
+        this.setProperty(new IntegerProperty(TARGET_CONTROLLER, targetController));
     }
+
     public int getTargetController() {
-        return this.getPropertyAsInt("target_controller");
+        return this.getPropertyAsInt(TARGET_CONTROLLER);
     }
 
     public void setContentTypeInclude(String contentTypeInclude) {
